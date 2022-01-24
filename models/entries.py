@@ -5,3 +5,4 @@ class Entries():
         self.entry = entry
         self.mood = mood
         self.date = date
+        self.tags = []

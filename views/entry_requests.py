@@ -90,12 +90,11 @@ def create_entry(new_entry):
         # primary key in the response.
         new_entry['id'] = id
         
-        for tag_id in new_entry['tag']:
+        for tag_id in new_entry['tags']:
             db_cursor.execute("""
-                insert into Entries_Tag values (null, ?)
-            """, (tag_id, new_entry['id']))
-
-    return json.dumps(new_entry)
+                insert into EntryTag values (null, ?, ?)
+            """, (new_entry['id'], tag_id))
+        return json.dumps(new_entry)
 
 def update_entry(id, new_entry):
     with sqlite3.connect("./dailyjournal.sqlite3") as conn:
